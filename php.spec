@@ -130,20 +130,20 @@ Patch47: php-5.4.9-phpinfo.patch
 # Fixes for tests
 
 
-BuildRequires: %{?scl_prefix}bzip2-devel, %{?scl_prefix}curl-devel >= 7.9
-BuildRequires: %{?scl_prefix}httpd-devel >= 2.0.46-1, %{?scl_prefix}pam-devel
-BuildRequires: %{?scl_prefix}libstdc++-devel, %{?scl_prefix}openssl-devel
-BuildRequires: %{?scl_prefix}sqlite-devel >= 3.6.0
-BuildRequires: %{?scl_prefix}zlib-devel, %{?scl_prefix}smtpdaemon, %{?scl_prefix}libedit-devel
-BuildRequires: %{?scl_prefix}pcre-devel >= 6.6
-BuildRequires: %{?scl_prefix}bzip2, %{?scl_prefix}perl, %{?scl_prefix}libtool >= 1.4.3, %{?scl_prefix}gcc-c++
-BuildRequires: %{?scl_prefix}libtool-ltdl-devel
+BuildRequires: bzip2-devel, curl-devel >= 7.9
+BuildRequires: httpd-devel >= 2.0.46-1, pam-devel
+BuildRequires: libstdc++-devel, openssl-devel
+BuildRequires: sqlite-devel >= 3.6.0
+BuildRequires: zlib-devel, smtpdaemon, libedit-devel
+BuildRequires: pcre-devel >= 6.6
+BuildRequires: bzip2, perl, libtool >= 1.4.3, gcc-c++
+BuildRequires: libtool-ltdl-devel
 %if %{with_libzip}
-BuildRequires: %{?scl_prefix}libzip-devel >= 0.10
-BuildRequires: %{?scl_prefix}libzip-devel <  0.11
+BuildRequires: libzip-devel >= 0.10
+BuildRequires: libzip-devel <  0.11
 %endif
 %if %{with_dtrace}
-BuildRequires: %{?scl_prefix}systemtap-sdt-devel
+BuildRequires: systemtap-sdt-devel
 %endif
 
 %if %{with_zts}
@@ -199,9 +199,9 @@ Summary: PHP FastCGI Process Manager
 License: PHP and Zend and BSD
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
 Requires(pre): /usr/sbin/useradd
-BuildRequires: %{?scl_prefix}systemd-units
-BuildRequires: %{?scl_prefix}systemd-devel
-Requires: %{?scl_prefix}systemd-units
+BuildRequires: systemd-units
+BuildRequires: systemd-devel
+Requires: systemd-units
 Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
@@ -267,8 +267,8 @@ package and the php-cli package.
 %package devel
 Group: Development/Libraries
 Summary: Files needed for building PHP extensions
-Requires: %{?scl_prefix}php-cli%{?_isa} = %{version}-%{release}, %{?scl_prefix}autoconf, %{?scl_prefix}automake
-Requires: %{?scl_prefix}pcre-devel%{?_isa}
+Requires: %{?scl_prefix}php-cli%{?_isa} = %{version}-%{release}, autoconf, automake
+Requires: pcre-devel%{?_isa}
 %if %{with_zts}
 Provides: %{?scl_prefix}php-zts-devel = %{version}-%{release}
 Provides: %{?scl_prefix}php-zts-devel%{?_isa} = %{version}-%{release}
@@ -305,7 +305,7 @@ Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}krb5-devel, %{?scl_prefix}openssl-devel, %{?scl_prefix}libc-client-devel
+BuildRequires: krb5-devel, openssl-devel, libc-client-devel
 
 %description imap
 The php-imap module will add IMAP (Internet Message Access Protocol)
@@ -318,7 +318,7 @@ Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}cyrus-sasl-devel, %{?scl_prefix}openldap-devel, %{?scl_prefix}openssl-devel
+BuildRequires: cyrus-sasl-devel, openldap-devel, openssl-devel
 
 %description ldap
 The php-ldap adds Lightweight Directory Access Protocol (LDAP)
@@ -400,7 +400,7 @@ License: PHP
 Requires: %{?scl_prefix}php-pdo%{?_isa} = %{version}-%{release}
 Provides: %{?scl_prefix}php_database
 Provides: %{?scl_prefix}php-pdo_pgsql, %{?scl_prefix}php-pdo_pgsql%{?_isa}
-BuildRequires: %{?scl_prefix}krb5-devel, %{?scl_prefix}openssl-devel, %{?scl_prefix}postgresql-devel
+BuildRequires: krb5-devel, openssl-devel, postgresql-devel
 
 %description pgsql
 The php-pgsql package add PostgreSQL database support to PHP.
@@ -436,7 +436,7 @@ License: PHP
 Requires: %{?scl_prefix}php-pdo%{?_isa} = %{version}-%{release}
 Provides: %{?scl_prefix}php_database
 Provides: %{?scl_prefix}php-pdo_odbc, %{?scl_prefix}php-pdo_odbc%{?_isa}
-BuildRequires: %{?scl_prefix}unixODBC-devel
+BuildRequires: unixODBC-devel
 
 %description odbc
 The php-odbc package contains a dynamic shared object that will add
@@ -453,7 +453,7 @@ Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}libxml2-devel
+BuildRequires: libxml2-devel
 
 %description soap
 The php-soap package contains a dynamic shared object that will add
@@ -464,7 +464,7 @@ Summary: A module for PHP applications that use Interbase/Firebird databases
 Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
-BuildRequires:  %{?scl_prefix}firebird-devel
+BuildRequires:  firebird-devel
 Requires: %{?scl_prefix}php-pdo%{?_isa} = %{version}-%{release}
 Provides: %{?scl_prefix}php_database
 Provides: %{?scl_prefix}php-firebird, %{?scl_prefix}php-firebird%{?_isa}
@@ -489,7 +489,7 @@ Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}, %{?scl_prefix}net-snmp
-BuildRequires: %{?scl_prefix}net-snmp-devel
+BuildRequires: net-snmp-devel
 
 %description snmp
 The php-snmp package contains a dynamic shared object that will add
@@ -510,7 +510,7 @@ Provides: %{?scl_prefix}php-wddx, %{?scl_prefix}php-wddx%{?_isa}
 Provides: %{?scl_prefix}php-xmlreader, %{?scl_prefix}php-xmlreader%{?_isa}
 Provides: %{?scl_prefix}php-xmlwriter, %{?scl_prefix}php-xmlwriter%{?_isa}
 Provides: %{?scl_prefix}php-xsl, %{?scl_prefix}php-xsl%{?_isa}
-BuildRequires: %{?scl_prefix}libxslt-devel >= 1.0.18-1, %{?scl_prefix}libxml2-devel >= 2.4.14-1
+BuildRequires: libxslt-devel >= 1.0.18-1, libxml2-devel >= 2.4.14-1
 
 %description xml
 The php-xml package contains dynamic shared objects which add support
@@ -554,16 +554,16 @@ License: PHP
 License: PHP and BSD
 %endif
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}t1lib-devel
+BuildRequires: t1lib-devel
 %if %{with_libgd}
-BuildRequires: %{?scl_prefix}gd-devel >= 2.1.0
+BuildRequires: gd-devel >= 2.1.0
 %else
 # Required to build the bundled GD library
-BuildRequires: %{?scl_prefix}libjpeg-devel
-BuildRequires: %{?scl_prefix}libpng-devel
-BuildRequires: %{?scl_prefix}freetype-devel
-BuildRequires: %{?scl_prefix}libXpm-devel
-BuildRequires: %{?scl_prefix}libvpx-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: freetype-devel
+BuildRequires: libXpm-devel
+BuildRequires: libvpx-devel
 %endif
 
 %description gd
@@ -587,7 +587,7 @@ Summary: A module for PHP applications for using the GNU MP library
 Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
-BuildRequires: %{?scl_prefix}gmp-devel
+BuildRequires: gmp-devel
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
 
 %description gmp
@@ -599,7 +599,7 @@ Summary: A database abstraction layer module for PHP applications
 Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
-BuildRequires: %{?scl_prefix}%{db_devel}, %{?scl_prefix}tokyocabinet-devel
+BuildRequires: %{db_devel}, tokyocabinet-devel
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
 
 %description dba
@@ -612,7 +612,7 @@ Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}libmcrypt-devel
+BuildRequires: libmcrypt-devel
 
 %description mcrypt
 The php-mcrypt package contains a dynamic shared object that will add
@@ -624,7 +624,7 @@ Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}libtidy-devel
+BuildRequires: libtidy-devel
 
 %description tidy
 The php-tidy package contains a dynamic shared object that will add
@@ -636,7 +636,7 @@ Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-pdo%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}freetds-devel
+BuildRequires: freetds-devel
 Provides: %{?scl_prefix}php-pdo_dblib, %{?scl_prefix}php-pdo_dblib%{?_isa}
 
 %description mssql
@@ -663,7 +663,7 @@ Group: System Environment/Libraries
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}aspell-devel >= 0.50.0
+BuildRequires: aspell-devel >= 0.50.0
 
 %description pspell
 The php-pspell package contains a dynamic shared object that will add
@@ -675,7 +675,7 @@ Group: System Environment/Libraries
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}recode-devel
+BuildRequires: recode-devel
 
 %description recode
 The php-recode package contains a dynamic shared object that will add
@@ -687,7 +687,7 @@ Group: System Environment/Libraries
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}libicu-devel >= 4.0
+BuildRequires: libicu-devel >= 4.0
 
 %description intl
 The php-intl package contains a dynamic shared object that will add
@@ -699,7 +699,7 @@ Group: System Environment/Libraries
 # All files licensed under PHP version 3.0
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-BuildRequires: %{?scl_prefix}enchant-devel >= 1.2.4
+BuildRequires: enchant-devel >= 1.2.4
 
 %description enchant
 The php-enchant package contains a dynamic shared object that will add
